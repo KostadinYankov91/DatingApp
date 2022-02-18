@@ -11,9 +11,9 @@ namespace API.Entites
 
         public DateTime DateOfBirth { get; set; }
         public string KnownAs { get; set; }
-        public DateTime Created { get; set; } = DateTime.Now;
+        public DateTime Created { get; set; } = DateTime.Parse(DateTime.Now.ToString("dddd, dd MMMM yyyy"));
         
-        public DateTime LastAcvite { get; set; } = DateTime.Now;
+        public DateTime LastAcvite { get; set; } = DateTime.Parse(DateTime.Now.ToString("dddd, dd MMMM yyyy"));
         public string Gender { get; set; }
         public string Introduction { get; set; }
         public string LookingFor { get; set; }
