@@ -45,7 +45,7 @@ namespace API.Controllers
         public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
         {
             var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var user = await _userRepository.GetuserByUsernameAsync(username);
+            var user = await _userRepository.GetUserByUsernameAsync(username);
             
             _mapper.Map(memberUpdateDto, user);
             _userRepository.Update(user);
