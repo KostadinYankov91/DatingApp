@@ -11,40 +11,39 @@ import { User } from '../_models/user';
 export class AccountService {
 
   baseUrl = environment.apiUrl;
-  private currentuserSource = new ReplaySubject<User>(1);
-  currentUser$ = this.currentuserSource.asObservable();
+  private currentUserSource = new ReplaySubject<User>(1);
+  currentUser$ = this.currentUserSource.asObservable();
   
   constructor(private http: HttpClient) { }
 
-  login(model: any){
+  login(model: any) {
     return this.http.post(this.baseUrl + 'account/login', model).pipe(
       map((response: User) => {
         const user = response;
         if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
-          this.currentuserSource.next(user);
+          this.setCurrentUser(user);
         }
       })
-    );
+    )
   }
 
   register(model: any) {
     return this.http.post(this.baseUrl + 'account/register', model).pipe(
       map((user: User) => {
         if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
-          this.currentuserSource.next(user);
+          this.setCurrentUser(user);
         }
       })
     )
   }
 
   setCurrentUser(user: User) {
-    this.currentuserSource.next(user);
+    localStorage.setItem('user', JSON.stringify(user));
+    this.currentUserSource.next(user);
   }
 
   logout() {
     localStorage.removeItem('user');
-    this.currentuserSource.next(null);
+    this.currentUserSource.next(null);
   }
 }
