@@ -111,6 +111,9 @@
   },
   "defaultProject": "client",
   "cli": {
-    "analytics": "e69cff02-2319-449f-bca5-63a25c985b73"
+    "analytics": "e69cff02-2319-449f-bca5-63a25c985b73",
+    "cache": {
+      "enabled": false
+    }
   }
 }
